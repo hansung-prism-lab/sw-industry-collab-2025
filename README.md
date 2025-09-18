@@ -2,11 +2,10 @@
 SW Industry-Academia Collaboration Project (Spring 2025)
 
 
+```mermaid
 flowchart LR
-    %% Input
     A[User-Written Text] --> B[Embedding Extractor Module]
 
-    %% Embedding Extractor 내부
     subgraph B[Embedding Extractor Module]
         B1[Position Embedding]
         B2[Segment Embedding]
@@ -19,7 +18,6 @@ flowchart LR
         B6 --> B7[Add & Norm]
     end
 
-    %% Profile Prediction Module
     B7 --> C[Profile Prediction Module]
 
     subgraph C[Profile Prediction Module]
@@ -29,5 +27,4 @@ flowchart LR
         C1 --> C2 --> C3
     end
 
-    %% Output
     C3 --> D[Output\n(ŷ1 ... ŷn)]
