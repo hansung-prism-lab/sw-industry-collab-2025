@@ -49,9 +49,9 @@ Social media has emerged as a critical data source for extracting consumer insig
 flowchart TD
     A[User-Written Text] --> EMB
 
-     subgraph EMB[Embedding Extractor Module\n]
+     subgraph EMB[Embedding Extractor Module]
      	direction LR
-     	PAD1[ ]:::invisible
+     	PAD1[ ]:::hidden
         E[Embeddings] --> SA[Self-Attention] --> AN1[Add & Norm] --> FF[Feed-Forward] -->AN2[Add & Norm]
     end
 
