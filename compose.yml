@@ -1,0 +1,39 @@
+version: "3.10"
+
+services:
+  # ------------------------------------------------------
+  # 1) TensorFlow + GPU (training / embedding extraction)
+  # ------------------------------------------------------
+  tensorflow:
+    build: .
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - .:/tf
+    working_dir: /tf
+    tty: true
+    stdin_open: true
+
+  # ------------------------------------------------------
+  # 2) Streamlit (serves the web UI)
+  # ------------------------------------------------------
+  streamlit:
+    image: tensorflow/tensorflow
+    depends_on:
+      - tensorflow
+    volumes:
+      - .:/tf
+    working_dir: /tf
+    command: >
+      streamlit run streamlit_main.py
+        --server.port 8501
+        --server.headless true
+    ports:
+      - "8501:8501"
+    environment:
+      - PYTHONUNBUFFERED=1
