@@ -22,28 +22,38 @@ Social media has emerged as a critical data source for extracting consumer insig
 - **Deployment**: Docker  
 - **Visualization**: Matplotlib
 
+## Repository Structure
+
+| File / Folder         | Description                         |
+| --------------------- | ----------------------------------- |
+| bert_main.py          | BERT embedding extraction script    |
+| main.py               | Model training and saving script    |
+| streamlit_main.py     | Streamlit web application           |
+| data/                 | Data directory                      |
+| ├─ final_data.pkl     | Data after embedding extraction     |
+| └─ data.csv           | Pre-processed data                  |
+| models/               | Saved models and encoders           |
+| utils/                | Utility functions                   |
+| ├─ model.py           | Model-related functions             |
+| ├─ path.py            | Path configuration                  |
+| ├─ streamlit_utils.py | Streamlit helper functions          |
+| └─ utils.py           | General utility functions           |
+| Dockerfile            | Docker image setup                  |
+| compose.yml           | Docker Compose configuration        |
+| requirements.txt      | Python dependencies                 |
+| README.md             | Project description and usage guide |
+
 
 ## System Architecture
 ```mermaid
 flowchart LR
     A[User-Written Text] --> EMB
 
-    subgraph EMB[Embedding Extractor Module]
-    	direction LR
-        P[Position Embedding]
-        S[Segment Embedding]
-        T[Token Embedding]
-        SA[Self-Attention]
-        AN1[Add & Norm]
-        FF[Feed-Forward]
-        AN2[Add & Norm]
-        
-        P --> SA
-        S --> SA
-        T --> SA
-        SA --> AN1 --> FF --> AN2
-    	   
+     subgraph EMB[Embedding Extractor Module]
+        direction LR
+        E[Embeddings] --> SA[Self-Attention] --> AN1[Add & Norm] --> FF[Feed-Forward] -->AN2[Add & Norm]
     end
+
 	
     EMB --> BE
     
