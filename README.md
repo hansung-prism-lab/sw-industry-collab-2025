@@ -51,8 +51,7 @@ flowchart TD
 
      subgraph EMB[Embedding Extractor Module]
      	direction LR
-     	PAD1[ ]:::hidden
-        E[Embeddings] --> SA[Self-Attention] --> AN1[Add & Norm] --> FF[Feed-Forward] -->AN2[Add & Norm]
+        PAD1["\u200B"] --> E[Embeddings] --> SA[Self-Attention] --> AN1[Add & Norm] --> FF[Feed-Forward] -->AN2[Add & Norm]
     end
 
 	
