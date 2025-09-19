@@ -46,16 +46,18 @@ Social media has emerged as a critical data source for extracting consumer insig
 
 ## System Architecture
 ```mermaid
-flowchart LR
+flowchart TD
     A[User-Written Text] --> EMB
 
-     subgraph EMB[Embedding Extractor Module]
+     subgraph EMB[Embedding Extractor]
+     	direction LR
         E[Embeddings] -->SA[Self-Attention] -->AN1[Add & Norm] -->FF[Feed-Forward] -->AN2[Add & Norm]
     end
 
 	
     EMB --> Pred  
     subgraph Pred[Profile Prediction Module]
+    	direction LR
     	BE[BERT Embeddings]
     	DL[Dense Layer]
     	
