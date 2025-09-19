@@ -49,8 +49,9 @@ Social media has emerged as a critical data source for extracting consumer insig
 flowchart TD
     A[User-Written Text] --> EMB
 
-     subgraph EMB[Embedding Extractor Module]
+     subgraph EMB[Embedding Extractor Module\n]
      	direction LR
+     	PAD1[ ]:::invisible
         E[Embeddings] --> SA[Self-Attention] --> AN1[Add & Norm] --> FF[Feed-Forward] -->AN2[Add & Norm]
     end
 
@@ -146,3 +147,7 @@ streamlit run streamlit_main.py
 - Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2019, June). Bert: Pre-training of deep bidirectional transformers for language understanding. In Proceedings of the 2019 conference of the North American chapter of the association for computational linguistics: human language technologies, volume 1 (long and short papers) (pp. 4171-4186).
 - Hugging Face Transformers Documentation: https://huggingface.co/transformers
 - PyTorch Documentation: https://pytorch.org/docs/stable/index.html
+
+----
+
+Last Update Date: September 19, 2025 
