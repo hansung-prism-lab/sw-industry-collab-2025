@@ -17,18 +17,19 @@ Social media has emerged as a critical data source for extracting consumer insig
 
 ## Tech Stack
 
-- **Language/Frameworks**: Python, Flask  
+- **Language/Frameworks**: Python, Streamlit
 - **Libraries**: PyTorch, Hugging Face Transformers, Scikit-learn, Pandas  
 - **Deployment**: Docker  
-- **Visualization**: Matplotlib, Plotly  
+- **Visualization**: Matplotlib
 
 
 ## System Architecture
 ```mermaid
 flowchart LR
-    A[User-Written Text] --> B[Embedding Extractor]
+    A[User-Written Text] --> EMB
 
     subgraph EMB[Embedding Extractor Module]
+        direction LR
         P[Position Embedding]
         S[Segment Embedding]
         T[Token Embedding]
@@ -42,19 +43,25 @@ flowchart LR
         T --> SA
         SA --> AN1 --> FF --> AN2
     end
+	
+    EMB --> Pred
+    
+    subgraph Pred[Profile Prediction Module]
+    	direction LR
+    	BE[BERT Embeddings]
+    	DL[Dense Layer]
+    	
+    	BE --> DL
+    end
+    
+    Pred --> OUT[Predicted Profile]
 
-    B --> EMB
-    EMB --> BE[BERT Embeddings]
-    BE --> DL[Dense Layer]
-    DL --> MLP[MLP Classifier]
-    MLP --> OUT[Predicted Profile]
 ```
 
 
 ## Achievements
 
-- Achieved **XX% accuracy** in profile prediction on SNS text data 
-- Improved **F1-score by +X.X%** compared to baseline models
+- Improved  **accuracy by +40% , F1-score by +20.2%** on average compared to baseline models
 - Completed prototype of web dashboard and conducted internal demo  
 - Verified applicability to real-world industry data
 
