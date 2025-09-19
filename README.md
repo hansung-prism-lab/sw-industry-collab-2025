@@ -29,7 +29,7 @@ flowchart LR
     A[User-Written Text] --> EMB
 
     subgraph EMB[Embedding Extractor Module]
-        direction LR
+    	direction LR
         P[Position Embedding]
         S[Segment Embedding]
         T[Token Embedding]
@@ -37,14 +37,15 @@ flowchart LR
         AN1[Add & Norm]
         FF[Feed-Forward]
         AN2[Add & Norm]
-
+        
         P --> SA
         S --> SA
         T --> SA
         SA --> AN1 --> FF --> AN2
+    	   
     end
 	
-    EMB --> Pred
+    EMB --> BE
     
     subgraph Pred[Profile Prediction Module]
     	direction LR
@@ -54,7 +55,7 @@ flowchart LR
     	BE --> DL
     end
     
-    Pred --> OUT[Predicted Profile]
+    DL --> OUT[Predicted Profile]
 
 ```
 
